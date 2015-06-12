@@ -8,7 +8,6 @@ end
 
 post '/p' do
     @params = params[:message]
-    @invoice = JSON.parse(@params)
     # erb :displaypost
 
 end
