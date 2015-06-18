@@ -1,6 +1,5 @@
 require 'logger'
 require 'json'
-require 'stringio'
 require 'Time'
 
 class IPNLogger
@@ -18,14 +17,25 @@ class IPNLogger
             return log_string
         end
 
-        def write_to_file(json_data)
+        # by default logs will be stored on files sorted by day
+        # 'id' sorts by id number, so a file per log
+        # 'currency' sorts by currency, so
+        #
+        # all logs are appended onto the preexisting file if it exists
+        def write_to_file(json_data, sort_type = 'default')
             t = Time.now
             log_string = parse_to_log_string(json_data, Time.now)
-            File.open(t.strftime("./logs/%Y-%m-%d.txt"), "a")  { |file| file.write(log_string) }
-        end
+            invoice = JSON.parse(json_data)
+            case sort_type
+            when 'default' || 'day'
+                fileName = t.strftime("./logs/%Y-%m-%d.txt")
+            when 'id'
+                fileName = "./logs/" + invoice['id']
+            else 'currency'
+                fileName = "./logs/" + invoice['currency']
+            end
 
-        # def retrieve_from_file(file_name)
-        #
-        # end
+            File.open(fileName, "a")  { |file| file.write(log_string) }
+        end
     end
 end
