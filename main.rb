@@ -9,10 +9,8 @@ get '/' do
 end
 
 post '/receive' do
-    puts 'RECEIVED'
-    binding.pry
     @params = request.body.read
-    IPNLogger.write_to_file(@params)
+    IPNLogger.write_to_file(@params, 'id')
     erb :displaypost
 end
 

@@ -30,8 +30,8 @@ class LogTests < MiniTest::Unit::TestCase
     #     for i in 0...10
     #         file = File.read('j.json')
     #         IPNLogger.write_to_file(file, 'id')
-    #         invoice = JSON.parse(file)
-    #         returnFile = File.read("./logs/" + invoice['id'])
+    #         ipn = JSON.parse(file)
+    #         returnFile = File.read("./logs/" + ipn['id'])
     #         assert_match(/id:\s[a-zA-Z0-9]*/, returnFile)
     #         assert_match(/status:\s((paid)|(confirmed)|(completed))/, returnFile)
     #         assert_match(/btcPrice:\s(\d+(\.\d+)?)/, returnFile)
@@ -52,7 +52,8 @@ class LogTests < MiniTest::Unit::TestCase
     def test_with_bitpay_client
         pem = File.read('bitpaykey.pem')
         client = BitPay::SDK::Client.new(api_uri: 'https://brianw.bp:8088', pem: pem, insecure: true)
-        invoice = client.create_invoice(price: 0.000114, currency: 'BTC', params: {notificationURL: 'http://brianw.bp:4567/receive'})
+        invoice = client.create_invoice(price: 0.000114, currency: 'BTC', params: {notificationURL: 'http://brianw.bp:4567/receive', fullNotifications: true})
+        puts invoice
     end
 
 end
