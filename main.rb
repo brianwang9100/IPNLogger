@@ -29,14 +29,14 @@ post '/receive' do
     write_to_files(@params)
 end
 
-get '/send' do
-    json_data = File.read('j.json')
-
-    req = Net::HTTP::Post.new("/receive", initheader = {'Content-Type' =>'application/json'})
-    req.body = json_data
-    response = Net::HTTP.new("localhost", 4567).start {|http| http.request(req) }
-    # return JSON.parse(json_data)
-end
+# get '/send' do
+#     json_data = File.read('j.json')
+#
+#     req = Net::HTTP::Post.new("/receive", initheader = {'Content-Type' =>'application/json'})
+#     req.body = json_data
+#     response = Net::HTTP.new("localhost", 4567).start {|http| http.request(req) }
+#     # return JSON.parse(json_data)
+# end
 
 post '/clear' do
     clear_logs

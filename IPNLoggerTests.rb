@@ -6,7 +6,6 @@ require_relative 'logger_utils'
 require_relative 'db_utils'
 
 module BitPay
-
     class LogTests < Minitest::Test
         include BitPay::IPNLoggerUtils
         def test_write_to_file
