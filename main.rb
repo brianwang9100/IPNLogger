@@ -4,10 +4,13 @@ require 'json'
 require 'net/http'
 require_relative 'logger_utils.rb'
 require_relative 'db_utils.rb'
+require_relative 'server_utils.rb'
 
 Tilt.register Tilt::ERBTemplate, 'html.erb'
 include BitPay::IPNLoggerUtils
 include BitPay::IPNDataBaseUtils
+include BitPay::IPNServerUtils
+
 def herb(template, options={}, locals={})
   render "html.erb", template, options, locals
 end
@@ -39,4 +42,12 @@ post '/clear' do
     clear_logs
     puts 'logs have been cleared'
     erb :clear
+end
+
+post '/resend' do
+    @invoice_id = params[:invoice_id]
+    if (!@invoice_id.nil? && !@invoice_id.empty?)
+        post_for_resend_notification(invoice_id: @invoice_id)
+    end
+    erb :resend
 end
