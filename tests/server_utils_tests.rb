@@ -2,14 +2,15 @@ require 'rubygems'
 require 'bitpay_sdk'
 require 'minitest/autorun'
 require 'Time'
-require_relative 'logger_utils'
-require_relative 'db_utils'
-require_relative 'server_utils'
+require_relative '../config/constants.rb'
+require_relative '../lib/logger_utils'
+require_relative '../lib/db_utils'
+require_relative '../lib/server_utils'
+
 module BitPay
     class ServerTests < MiniTest::Unit::TestCase
         include BitPay::IPNServerUtils
         # include Minitest::RSpecMocks
-
         def test_retrieve_client_token
             @bpc = MiniTest::Mock.new
             @bpc.expect :get,
@@ -71,27 +72,5 @@ module BitPay
             response = post_for_resend_notification(invoice_id: @invoice_id)
             assert_equal({"data" => "Success"}, response)
         end
-
-        # def test_get_invoices
-        #     @bpc = MiniTest::Mock.new
-        #     @bpc.expect :get,
-        #         {"data"=>[{"merchant"=>"C96Nr9EsRzK1crgGiVu2nJRXC8qfiWjX2ZvNCV1PcBw9"}]},
-        #         [path: "tokens"]
-        #     @bpc.expect :get,
-        #         {"facade": "something", "data":[]},
-        #         [path: "invoices?dateStart=1430000000000", tokens: retrieve_client_token(@bpc)]
-        #     assert_equal([], get_invoices(@bpc))
-        # end
-        #
-        # def test_get_invoice
-        #     @bpc = MiniTest::Mock.new
-        #     @bpc.expect :get,
-        #         {"data"=>[{"merchant"=>"C96Nr9EsRzK1crgGiVu2nJRXC8qfiWjX2ZvNCV1PcBw9"}]},
-        #         [path: "tokens"]
-        #     @bpc.expect :get,
-        #         JSON.parse('{"facade": "something", "data":{}'}),
-        #         [path: "invoices/MVKr5FifPs3mzrY4h6NV4h", tokens: retrieve_client_token(@bpc)]
-        #     assert_equal({}, get_invoice('MVKr5FifPs3mzrY4h6NV4h'))
-        # end
     end
 end

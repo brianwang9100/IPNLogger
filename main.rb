@@ -2,9 +2,9 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'net/http'
-require_relative 'logger_utils.rb'
-require_relative 'db_utils.rb'
-require_relative 'server_utils.rb'
+require_relative './lib/logger_utils.rb'
+require_relative './lib/db_utils.rb'
+require_relative './lib/server_utils.rb'
 
 Tilt.register Tilt::ERBTemplate, 'html.erb'
 include BitPay::IPNLoggerUtils
@@ -30,7 +30,7 @@ post '/receive' do
 end
 
 # get '/send' do
-#     json_data = File.read('j.json')
+#     json_data = File.read('tests/test.json')
 #
 #     req = Net::HTTP::Post.new("/receive", initheader = {'Content-Type' =>'application/json'})
 #     req.body = json_data
