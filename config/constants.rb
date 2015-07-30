@@ -2,7 +2,7 @@
 # Location of URI, FILE_NAMES
 API_URI = "https://brianw.bp:8088" #'https://test.bitpay.com'
 ROOT_URL = "http://brianw.bp:4567" #'localhost:4567'
-PEM_FILE_NAME = 'bitpaykeymerch.pem'
+PEM_FILE_NAME = 'merchpem.pem'
 LOG_FILE_NAME = 'log.txt'
 LAST_LOG_FILE_NAME = 'last_log.json'
 

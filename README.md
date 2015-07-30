@@ -1,17 +1,14 @@
 #BitPay IPN logger
 ========================================
+## Pre-Setup
+1. If you are testing on a local machine bitpay server, please download, install, and run TinyProxy.
+
+## Configuration
+1. Create a paired pem file by running the create_paired_pem.rb ruby script:
+`ruby test/create_paired_pem.rb`
+Follow the instructions. Be sure to use the MERCHANT facade when paring.
+2. Go into config/constants.rb and set your API_URI, ROOT_URL, and PEM_FILE_NAME. Make sure that your PEM_FILE_NAME is the same as the one you just created.
+
+## Running
 To run, cd into the folder and run:
 `ruby main.rb`
-0250AA3A9E7A8A2B303BF048FA1CE52FD8A04A6723322F6870980F2BE76BC06257
-0250aa3a9e7a8a2b303bf048fa1ce52fd8a04a6723322f6870980f2be76bc06257
-
-AD5A8760E68B052626A8B7F673689527557BEFC3DFD41E4288972D103FC9A09A
-ad5a8760e68b052626a8b7f673689527557befc3dfd41e4288972d103fc9a09a
-
-Tf5fBJSLcYXaXBiyEixtjM5TLwdVHKyH4Up
-Tf5fBJSLcYXaXBiyEixtjM5TLwdVHKyH4Up
-
-3045022100deb1897f64ee5a21b3df0c1fc2f31b32a389eb6288b621ed36934839d0a4225002203bd0d886f3ca9fa35f0f9943361586227597ceeb916d08884fa8e39520c7c05b
-3045022100deb1897f64ee5a21b3df0c1fc2f31b32a389eb6288b621ed36934839d0a4225002203bd0d886f3ca9fa35f0f9943361586227597ceeb916d08884fa8e39520c7c05b
-304502206c1539d0def223cff268b5e894338bcc0d44cab456a7e93b607450df130f46fc022100e53b4a74c7a973c8e9f5e1fa0aa6793a99d1809d554706b357ac62037d942edf
-3045022100bb8a2e80af0ca459a9c3e414a568e1f660589db0a5fa2706315ffa73f6982ffa022054872f52bdd3901b378c07f142a3a20e9ab031b9dc2dae7ed4b749ec0fe12597
