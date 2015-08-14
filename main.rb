@@ -11,6 +11,8 @@ include BitPay::IPNLoggerUtils
 include BitPay::IPNDataBaseUtils
 include BitPay::IPNServerUtils
 
+set :port, 4567
+
 def herb(template, options={}, locals={})
   render "html.erb", template, options, locals
 end
